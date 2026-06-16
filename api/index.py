@@ -1,14 +1,14 @@
 from fastapi import FastAPI  # type: ignore
 from fastapi.responses import PlainTextResponse  # type: ignore
-from genai import genai  # type: ignore
+from google import genai  # type: ignore
 
 app = FastAPI()
 
-client = genai.Client(api_key="YOUR_API_KEY")
+client = genai.Client()
 
 @app.get("/api", response_class=PlainTextResponse)
 def idea():
-    prompt = [{"role": "user", "content": "Come up with a new business idea for AI Agents"}]
+    prompt = "Come up with a new business idea for AI Agents"
     response = client.models.generate_content(
         model="gemini-2.5-flash",
         contents=prompt
